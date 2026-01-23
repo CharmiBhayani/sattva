@@ -1,0 +1,9 @@
+# frontend
+sattva-frontend/node_modules/
+sattva-frontend/dist/
+
+# backend
+sattva-backend/node_modules/
+
+# env files
+.env
