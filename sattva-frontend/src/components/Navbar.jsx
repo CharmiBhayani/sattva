@@ -20,8 +20,9 @@ export default function Navbar() {
     {token && <Link to="/profile">Profile</Link>}
     {user?.role === "user" && (
   <a href="/apply-tutor">Become a Tutor</a>
+  
 )}
-
+<a href="/live-classes">Live Classes</a>
   </div>
 
 

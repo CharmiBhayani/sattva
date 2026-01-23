@@ -17,6 +17,7 @@ import userRoutes from "./routes/userRoutes.js";
 import tutorApplicationRoutes from "./routes/tutorApplicationRoutes.js";
 import liveClassRoutes from "./routes/liveClassRoutes.js";
 
+
 connectDB();
 
 const app = express();
@@ -35,6 +36,7 @@ app.use("/session",sessionRoutes);
 
 app.use("/tutor-applications", tutorApplicationRoutes);
 app.use("/live-classes", liveClassRoutes);
+
 
 app.listen(5000, () => {
   console.log("Server started on http://localhost:5000");
