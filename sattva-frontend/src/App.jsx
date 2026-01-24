@@ -24,6 +24,8 @@ import AdminTutorRequestDetail from "./admin/AdminTutorRequestDetail";
 import TutorDashboard from "./tutor/TutorDashboard";
 import CreateLiveClass from "./tutor/CreateLiveClass";
 import MyLiveClasses from "./tutor/MyLiveClass";
+import MyBookedClasses from "./pages/MyBookedClasses";
+import EnrolledUsers from "./tutor/EnrolledUsers";
 
 function App() {
   const token = localStorage.getItem("token");
@@ -94,6 +96,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <ApplyTutor />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/my-bookings"
+            element={
+              <ProtectedRoute>
+                <MyBookedClasses />
               </ProtectedRoute>
             }
           />
@@ -168,6 +178,15 @@ function App() {
             element={
               <TutorRoute>
                 <MyLiveClasses />
+              </TutorRoute>
+            }
+          />
+
+          <Route
+            path="/tutor/enrollments"
+            element={
+              <TutorRoute>
+                <EnrolledUsers />
               </TutorRoute>
             }
           />

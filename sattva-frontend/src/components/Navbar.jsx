@@ -22,7 +22,10 @@ export default function Navbar() {
   <a href="/apply-tutor">Become a Tutor</a>
   
 )}
-<a href="/live-classes">Live Classes</a>
+    {user?.role === "user" && (
+    <a href="/my-bookings">My Classes</a>
+  )}
+<Link to="/live-classes">Live Classes</Link>
   </div>
 
 

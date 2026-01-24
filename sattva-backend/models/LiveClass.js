@@ -50,6 +50,11 @@ const liveClassSchema = new mongoose.Schema({
     default: 10
   },
 
+  participants: [{
+  type: mongoose.Schema.Types.ObjectId,
+  ref: "User"
+}],
+
   isActive: {
     type: Boolean,
     default: true

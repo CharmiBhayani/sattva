@@ -40,6 +40,20 @@ export default function TutorDashboard() {
             View and manage your upcoming sessions.
           </p>
         </Link>
+        <Link
+          to="/tutor/classes"
+          className="p-6 bg-white rounded-xl shadow hover:shadow-lg transition border"
+        >
+          <h3 className="text-xl font-semibold mb-2">
+            📅 Enrolled Users
+          </h3>
+          <p className="text-gray-600">
+            Have a look at who enrolled for your classes!
+          </p>
+        </Link>
+        <Link to="/tutor/enrollments">
+          View Enrolled Users
+        </Link>
       </div>
     </div>
   );
