@@ -41,7 +41,7 @@ export default function TutorDashboard() {
           </p>
         </Link>
         <Link
-          to="/tutor/classes"
+          to="/tutor/enrollments"
           className="p-6 bg-white rounded-xl shadow hover:shadow-lg transition border"
         >
           <h3 className="text-xl font-semibold mb-2">
@@ -51,9 +51,7 @@ export default function TutorDashboard() {
             Have a look at who enrolled for your classes!
           </p>
         </Link>
-        <Link to="/tutor/enrollments">
-          View Enrolled Users
-        </Link>
+        
       </div>
     </div>
   );

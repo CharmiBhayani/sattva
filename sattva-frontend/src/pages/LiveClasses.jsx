@@ -1,27 +1,50 @@
 import { useEffect, useState } from "react";
 import { getUpcomingLiveClasses } from "../services/liveClassApi";
-import { bookLiveClass } from "../services/bookingApi";
+import { getMyBookings } from "../services/bookingApi";
+import { createMockPayment, verifyMockPayment } from "../services/mockPaymentApi";
+import MockCheckout from "../components/MockCheckout";
 
 export default function LiveClasses() {
+  // ✅ ALL hooks INSIDE component, TOP LEVEL
   const [classes, setClasses] = useState([]);
-  const token = localStorage.getItem("token"); 
+  const [bookedClassIds, setBookedClassIds] = useState([]);
+  const [intentId, setIntentId] = useState(null);
+  const [showCheckout, setShowCheckout] = useState(false);
+
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     getUpcomingLiveClasses().then(setClasses);
+
+    if (token) {
+      getMyBookings(token).then(data => {
+        const ids = data.map(b => b.liveClass._id);
+        setBookedClassIds(ids);
+      });
+    }
   }, []);
 
-  const handleBook = async (classId) => {
-    try {
-      if (!token) {
-        alert("Please login to book a class");
-        return;
-      }
-
-      await bookLiveClass(classId, token);
-      alert("Class booked successfully 🎉");
-    } catch (err) {
-      alert(err.message);
+  const handlePay = async (cls) => {
+    if (bookedClassIds.includes(cls._id)) {
+      alert("⚠️ You have already booked this class");
+      return;
     }
+
+    const data = await createMockPayment(cls._id, token);
+    setIntentId(data.intentId);
+    setShowCheckout(true);
+  };
+
+  const handleSuccess = async () => {
+    await verifyMockPayment(intentId, "success", token);
+    alert("Booking confirmed 🎉");
+    setShowCheckout(false);
+  };
+
+  const handleFail = async () => {
+    await verifyMockPayment(intentId, "failed", token);
+    alert("Payment failed ❌");
+    setShowCheckout(false);
   };
 
   return (
@@ -39,11 +62,25 @@ export default function LiveClasses() {
           <p>₹ {cls.price}</p>
 
           <button
-            onClick={() => handleBook(cls._id)}
-            className="mt-3 bg-calmBlue text-white px-4 py-2 rounded"
+            onClick={() => handlePay(cls)}
+            disabled={bookedClassIds.includes(cls._id)}
+            className={`mt-3 px-4 py-2 rounded text-white ${
+              bookedClassIds.includes(cls._id)
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-calmBlue"
+            }`}
           >
-            Book Class
+            {bookedClassIds.includes(cls._id)
+              ? "Already Booked ✅"
+              : "Pay & Book Class"}
           </button>
+
+          {showCheckout && (
+            <MockCheckout
+              onSuccess={handleSuccess}
+              onFail={handleFail}
+            />
+          )}
         </div>
       ))}
     </div>

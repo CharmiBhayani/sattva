@@ -2,6 +2,8 @@ import { useState, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { login } from "../services/auth";
 import { AuthContext } from "../context/AuthContext.jsx";
+import { createMockPayment, verifyMockPayment } from "../services/mockPaymentApi";
+import MockCheckout from "../components/MockCheckout";
 
 
 export default function Login() {

@@ -66,16 +66,19 @@ export const updatePose = async (req,res) => {
 };
 
 //delete pose
-export const deletePose = async (req,res)=>{
-  try{
-    const { id }=req.params;
 
-    const deletedPose = await Pose.findOneAndDelete(id);
-    if(!deletedPose){
-      return res.status(404).json({message: "Pose not found"});
+export const deletePose = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const deletedPose = await Pose.findByIdAndDelete(id);
+
+    if (!deletedPose) {
+      return res.status(404).json({ message: "Pose not found" });
     }
-    res.json({message: "Pose deleted successfully"});
-  }catch(error){
-    res.status(500).json({message: error.message});
+
+    res.json({ message: "Pose deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 };
