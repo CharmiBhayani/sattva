@@ -61,13 +61,17 @@ export default function Header() {
             <>
               <Link to="/" className={linkClass}>Home</Link>
               <Link to="/poses" className={linkClass}>Poses</Link>
+              <Link to="/sessions" className={linkClass}>Sessions</Link>
+              <Link to="/create" className={linkClass}>Create session</Link>
               <Link to="/live-classes" className={linkClass}>Live Classes</Link>
               <Link to="/my-bookings" className={linkClass}>My Bookings</Link>
               <Link to="/apply-tutor" className={linkClass}>Become a Tutor</Link>
               <Link to="/profile" className={linkClass}>Profile</Link>
+              
               <button 
                 onClick={handleLogout}
-                className={linkClass}
+                className="px-4 py-2 bg-sattvaBrown text-sattvaCream rounded-lg font-medium text-sm 
+                         hover:bg-sattvaDark transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg uppercase tracking-wide"
               >
                 Logout
               </button>
@@ -81,7 +85,8 @@ export default function Header() {
               <Link to="/tutor/create-class" className={linkClass}>Create Class</Link>
               <button 
                 onClick={handleLogout}
-                className={linkClass}
+                className="px-4 py-2 bg-sattvaBrown text-sattvaCream rounded-lg font-medium text-sm 
+                         hover:bg-sattvaDark transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg uppercase tracking-wide"
               >
                 Logout
               </button>
@@ -93,7 +98,8 @@ export default function Header() {
               <Link to="/admin" className={linkClass}>Admin Dashboard</Link>
               <button 
                 onClick={handleLogout}
-                className={linkClass}
+                className="px-4 py-2 bg-sattvaBrown text-sattvaCream rounded-lg font-medium text-sm 
+                         hover:bg-sattvaDark transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg uppercase tracking-wide"
               >
                 Logout
               </button>

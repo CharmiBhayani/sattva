@@ -35,104 +35,173 @@ export default function PoseList() {
     setFiltered(temp);
   }, [levelFilter, goalFilter, timeFilter, poses]);
 
-
   return (
-    <div className="mt-5 bg-calmLavender p-6 rounded-1xl shadow-md backdrop-blur-lg">
-
-      <h2 className="text-3xl font-semibold text-calmNavy mb-6">Yoga Poses</h2>
-
-      {/* FILTER SECTION */}
-      <div className="text-1xl font-semibold text-calmBlue flex flex-wrap gap-4 mb-8">
-
-        {/* Level Filter */}
-        <select
-          className="px-4 py-2 rounded-xl bg-white shadow-sm border border-calmNavy/20"
-          value={levelFilter}
-          onChange={(e) => setLevelFilter(e.target.value)}
-        >
-          <option>All</option>
-          <option>Easy</option>
-          <option>Medium</option>
-          <option>Hard</option>
-        </select>
-
-        {/* Goal Filter */}
-        <select
-          className="px-4 py-2 rounded-xl bg-white shadow-sm border border-calmNavy/20"
-          value={goalFilter}
-          onChange={(e) => setGoalFilter(e.target.value)}
-        >
-          <option>All</option>
-          <option>Digestion</option>
-          <option>Energy</option>
-          <option>Flexibility</option>
-          <option>Relaxation</option>
-          <option>Sleep</option>
-          <option>Posture</option>
-          <option>Balance</option>
-          <option>Focus</option>
-          <option>Strength</option>
-        </select>
-
-        {/* Time of Day Filter */}
-        <select
-          className="px-4 py-2 rounded-xl bg-white shadow-sm border border-calmNavy/20"
-          value={timeFilter}
-          onChange={(e) => setTimeFilter(e.target.value)}
-        >
-          <option>All</option>
-          <option>Morning</option>
-          <option>Evening</option>
-          <option>Night</option>
-        </select>
-
+    <div className="min-h-screen bg-gradient-to-b from-sattvaCream via-sattvaBeige/20 to-sattvaCream py-12 px-4">
+      
+      {/* Background decoration */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
+        <div className="absolute top-20 right-10 w-64 h-64 bg-sattvaBrown/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 left-10 w-96 h-96 bg-sattvaBeige/30 rounded-full blur-3xl"></div>
       </div>
 
-      {/* CARD GRID */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-
-        {filtered.map((pose) => (
-          <div
-            key={pose._id}
-            className="p-5 rounded-2xl bg-gradient-to-br from-white to-calmMint/20 shadow-md 
-                       border border-white/40 hover:shadow-calmBlue/30 hover:shadow-lg
-                       transition duration-300 transform hover:-translate-y-2"
-          >
-            <h3 className="text-xl font-semibold text-calmNavy flex items-center gap-2">
-              {pose.name}
-            </h3>
-
-            <div className="h-px bg-calmNavy/20 my-3"></div>
-
-            <div className="flex gap-2">
-              <span className="px-3 py-1 text-sm rounded-full bg-calmBlue/20 text-calmBlue border border-calmBlue/40">
-                {pose.level}
-              </span>
-              <span className="px-3 py-1 text-sm rounded-full bg-calmMint/20 text-calmNavy border border-calmMint/40">
-                {pose.duration} min
-              </span>
-            </div>
-
-            <div className="flex flex-wrap gap-2 mt-3">
-              {pose.goals?.map((g, i) => (
-                <span
-                  key={i}
-                  className="px-2 py-1 text-xs rounded-full bg-calmYellow/40 text-calmNavy border border-calmYellow/50"
-                >
-                  {g}
-                </span>
-              ))}
-            </div>
+      <div className="max-w-7xl mx-auto">
+        
+        {/* Header Section */}
+        <div className="text-center mb-12">
+          <div className="flex justify-center mb-4">
+            <svg className="w-12 h-12 text-sattvaBrown/40" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M12 2C12 2 8 6 8 12C8 14.21 9.79 16 12 16C14.21 16 16 14.21 16 12C16 6 12 2 12 2Z" strokeWidth="1.5"/>
+              <path d="M12 16C12 16 8 18 6 20M12 16C12 16 16 18 18 20M6 20C6 20 4 18 4 16M18 20C18 20 20 18 20 16" strokeWidth="1.5"/>
+            </svg>
           </div>
-        ))}
-      </div>
+          <h2 className="text-4xl md:text-5xl font-serif text-sattvaDark mb-3">Yoga Poses</h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-transparent via-sattvaBrown to-transparent mx-auto mb-4"></div>
+          <p className="text-sattvaBrown/70 font-light">Discover poses tailored to your practice</p>
+        </div>
 
-      {/* EMPTY STATE */}
-      {filtered.length === 0 && (
-        <p className="text-center text-calmNavy/60 mt-8 text-lg">
-          No poses match your filters 🧘‍♀️✨
-        </p>
-      )}
+        {/* FILTER SECTION */}
+        <div className="bg-white/60 backdrop-blur-sm rounded-2xl shadow-lg border border-sattvaBeige/50 p-6 mb-10">
+          <div className="flex flex-wrap gap-4 justify-center">
+
+            {/* Level Filter */}
+            <div className="flex flex-col gap-2">
+              <label className="text-xs uppercase tracking-wider text-sattvaBrown/70 font-semibold">Level</label>
+              <select
+                className="px-5 py-3 rounded-xl bg-sattvaCream/80 shadow-sm border border-sattvaBeige 
+                           text-sattvaDark font-medium focus:outline-none focus:ring-2 focus:ring-sattvaBrown/30 
+                           focus:border-sattvaBrown transition-all duration-300 cursor-pointer hover:border-sattvaBrown/50"
+                value={levelFilter}
+                onChange={(e) => setLevelFilter(e.target.value)}
+              >
+                <option>All</option>
+                <option>Easy</option>
+                <option>Medium</option>
+                <option>Hard</option>
+              </select>
+            </div>
+
+            {/* Goal Filter */}
+            <div className="flex flex-col gap-2">
+              <label className="text-xs uppercase tracking-wider text-sattvaBrown/70 font-semibold">Goal</label>
+              <select
+                className="px-5 py-3 rounded-xl bg-sattvaCream/80 shadow-sm border border-sattvaBeige 
+                           text-sattvaDark font-medium focus:outline-none focus:ring-2 focus:ring-sattvaBrown/30 
+                           focus:border-sattvaBrown transition-all duration-300 cursor-pointer hover:border-sattvaBrown/50"
+                value={goalFilter}
+                onChange={(e) => setGoalFilter(e.target.value)}
+              >
+                <option>All</option>
+                <option>Digestion</option>
+                <option>Energy</option>
+                <option>Flexibility</option>
+                <option>Relaxation</option>
+                <option>Sleep</option>
+                <option>Posture</option>
+                <option>Balance</option>
+                <option>Focus</option>
+                <option>Strength</option>
+              </select>
+            </div>
+
+            {/* Time of Day Filter */}
+            <div className="flex flex-col gap-2">
+              <label className="text-xs uppercase tracking-wider text-sattvaBrown/70 font-semibold">Time of Day</label>
+              <select
+                className="px-5 py-3 rounded-xl bg-sattvaCream/80 shadow-sm border border-sattvaBeige 
+                           text-sattvaDark font-medium focus:outline-none focus:ring-2 focus:ring-sattvaBrown/30 
+                           focus:border-sattvaBrown transition-all duration-300 cursor-pointer hover:border-sattvaBrown/50"
+                value={timeFilter}
+                onChange={(e) => setTimeFilter(e.target.value)}
+              >
+                <option>All</option>
+                <option>Morning</option>
+                <option>Evening</option>
+                <option>Night</option>
+              </select>
+            </div>
+
+          </div>
+
+          {/* Active Filters Display */}
+          {(levelFilter !== "All" || goalFilter !== "All" || timeFilter !== "All") && (
+            <div className="mt-4 pt-4 border-t border-sattvaBeige/50">
+              <p className="text-sm text-sattvaBrown/70 font-light">
+                Showing <span className="font-semibold text-sattvaDark">{filtered.length}</span> poses
+              </p>
+            </div>
+          )}
+        </div>
+
+        {/* CARD GRID */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          {filtered.map((pose) => (
+            <div
+              key={pose._id}
+              className="group relative bg-white/80 backdrop-blur-sm rounded-2xl shadow-md 
+                         border border-sattvaBeige/50 p-6 hover:shadow-2xl hover:border-sattvaBrown/30
+                         transition-all duration-500 transform hover:-translate-y-2 overflow-hidden"
+            >
+              {/* Decorative corner accent */}
+              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-sattvaBrown/10 to-transparent rounded-bl-full"></div>
+              
+              {/* Pose Name */}
+              <h3 className="text-2xl font-serif text-sattvaDark mb-1 relative z-10">
+                {pose.name}
+              </h3>
+
+              {/* Divider */}
+              <div className="h-px bg-gradient-to-r from-sattvaBrown/30 via-sattvaBrown/10 to-transparent my-4"></div>
+
+              {/* Level & Duration Tags */}
+              <div className="flex gap-2 mb-4">
+                <span className="px-3 py-1.5 text-sm rounded-full bg-sattvaBrown/10 text-sattvaDark 
+                                border border-sattvaBrown/20 font-medium">
+                  {pose.level}
+                </span>
+                <span className="px-3 py-1.5 text-sm rounded-full bg-sattvaBeige/50 text-sattvaBrown 
+                                border border-sattvaBeige font-medium flex items-center gap-1">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  {pose.duration} min
+                </span>
+              </div>
+
+              {/* Goals Tags */}
+              <div className="flex flex-wrap gap-2">
+                {pose.goals?.map((g, i) => (
+                  <span
+                    key={i}
+                    className="px-2.5 py-1 text-xs rounded-full bg-sattvaCream/80 text-sattvaBrown 
+                               border border-sattvaBeige/80 font-light"
+                  >
+                    {g}
+                  </span>
+                ))}
+              </div>
+
+              {/* Hover decoration */}
+              <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-sattvaBrown to-transparent 
+                              opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            </div>
+          ))}
+        </div>
+
+        {/* EMPTY STATE */}
+        {filtered.length === 0 && (
+          <div className="text-center py-20">
+            <svg className="w-20 h-20 text-sattvaBrown/20 mx-auto mb-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M12 2C12 2 8 6 8 12C8 14.21 9.79 16 12 16C14.21 16 16 14.21 16 12C16 6 12 2 12 2Z" strokeWidth="1.5"/>
+              <path d="M12 16C12 16 8 18 6 20M12 16C12 16 16 18 18 20M6 20C6 20 4 18 4 16M18 20C18 20 20 18 20 16" strokeWidth="1.5"/>
+            </svg>
+            <p className="text-sattvaBrown/60 text-lg font-light mb-2">
+              No poses match your filters
+            </p>
+            <p className="text-sattvaBrown/40 text-sm">Try adjusting your selection</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
