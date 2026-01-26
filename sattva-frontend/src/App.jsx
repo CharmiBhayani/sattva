@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 
+import MainLayout from "./layouts/MainLayout";
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
@@ -11,7 +12,7 @@ import ApplyTutor from "./pages/ApplyTutor";
 import LiveClasses from "./pages/LiveClasses";
 import MyBookedClasses from "./pages/MyBookedClasses";
 
-import Navbar from "./components/Navbar";
+
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminRoute from "./components/AdminRoute";
 import TutorRoute from "./components/TutorRoute";
@@ -36,128 +37,85 @@ function App() {
   const user = JSON.parse(localStorage.getItem("user"));
   const role = user?.role;
 
-  // Navbar only for visitors + users
-  const showNavbar = !token || role === "user";
-
   return (
-    <>
-      {showNavbar && <Navbar />}
+    <Routes>
 
-      <div className="px-6 md:px-16 mt-6">
-        <Routes>
+      {/* 🌿 MAIN WEBSITE LAYOUT */}
+      <Route element={<MainLayout />}>
 
-          {/* AUTH */}
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
 
-          {/* HOME */}
-          <Route
-            path="/"
-            element={
-              token && role === "admin" ? (
-                <Navigate to="/admin" replace />
-              ) : token && role === "tutor" ? (
-                <Navigate to="/tutor" replace />
-              ) : (
-                <Home />
-              )
-            }
-          />
+        <Route
+          path="/"
+          element={
+            token && role === "admin" ? (
+              <Navigate to="/admin" replace />
+            ) : token && role === "tutor" ? (
+              <Navigate to="/tutor/dashboard" replace />
+            ) : (
+              <Home />
+            )
+          }
+        />
 
-          {/* PUBLIC */}
-          <Route path="/poses" element={<PoseList />} />
-          <Route path="/live-classes" element={<LiveClasses />} />
+        <Route path="/poses" element={<PoseList />} />
+        <Route path="/live-classes" element={<LiveClasses />} />
 
-          {/* USER */}
-          <Route
-            path="/sessions"
-            element={
-              <ProtectedRoute>
-                <SessionList />
-              </ProtectedRoute>
-            }
-          />
+        <Route
+          path="/sessions"
+          element={<ProtectedRoute><SessionList /></ProtectedRoute>}
+        />
 
-          <Route
-            path="/create"
-            element={
-              <ProtectedRoute>
-                <CreateSession />
-              </ProtectedRoute>
-            }
-          />
+        <Route
+          path="/create"
+          element={<ProtectedRoute><CreateSession /></ProtectedRoute>}
+        />
 
-          <Route
-            path="/profile"
-            element={
-              <ProtectedRoute>
-                <Profile />
-              </ProtectedRoute>
-            }
-          />
+        <Route
+          path="/profile"
+          element={<ProtectedRoute><Profile /></ProtectedRoute>}
+        />
 
-          <Route
-            path="/apply-tutor"
-            element={
-              <ProtectedRoute>
-                <ApplyTutor />
-              </ProtectedRoute>
-            }
-          />
+        <Route
+          path="/apply-tutor"
+          element={<ProtectedRoute><ApplyTutor /></ProtectedRoute>}
+        />
 
-          <Route
-            path="/my-bookings"
-            element={
-              <ProtectedRoute>
-                <MyBookedClasses />
-              </ProtectedRoute>
-            }
-          />
+        <Route
+          path="/my-bookings"
+          element={<ProtectedRoute><MyBookedClasses /></ProtectedRoute>}
+        />
 
-          {/* ================= ADMIN (NESTED) ================= */}
-          <Route
-            path="/admin"
-            element={
-              <AdminRoute>
-                <AdminDashboard />
-              </AdminRoute>
-            }
-          >
-            {/* default admin page */}
-            <Route index element={<AdminOverview />} />
+      </Route>
 
-            <Route path="poses" element={<ManagePoses />} />
-            <Route path="add-pose" element={<AddPose />} />
+      {/* 🛠 ADMIN (separate layout already inside AdminDashboard) */}
+      <Route
+        path="/admin"
+        element={<AdminRoute><AdminDashboard /></AdminRoute>}
+      >
+        <Route index element={<AdminOverview />} />
+        <Route path="poses" element={<ManagePoses />} />
+        <Route path="add-pose" element={<AddPose />} />
+        <Route path="tutor-requests" element={<AdminTutorRequests />} />
+        <Route path="tutor-requests/:id" element={<AdminTutorRequestDetail />} />
+        <Route path="tutors" element={<AdminTutors />} />
+      </Route>
 
-            <Route path="tutor-requests" element={<AdminTutorRequests />} />
-            <Route
-              path="tutor-requests/:id"
-              element={<AdminTutorRequestDetail />}
-            />
-            <Route path="tutors" element={<AdminTutors/>}/>
-          </Route>
+      {/* 👩‍🏫 TUTOR (uses TutorLayout) */}
+      <Route
+        path="/tutor"
+        element={<TutorRoute><TutorLayout /></TutorRoute>}
+      >
+        <Route path="dashboard" element={<TutorDashboard />} />
+        <Route path="create-class" element={<CreateLiveClass />} />
+        <Route path="my-classes" element={<MyLiveClasses />} />
+        <Route path="enrolled-users" element={<EnrolledUsers />} />
+      </Route>
 
-          {/* ================= TUTOR ================= */}
-          
-         <Route
-            path="/tutor"
-            element={
-              <TutorRoute>
-                <TutorLayout />
-              </TutorRoute>
-            }
-          >
-            <Route path="dashboard" element={<TutorDashboard />} />
-            <Route path="create-class" element={<CreateLiveClass />} />
-            <Route path="my-classes" element={<MyLiveClasses />} />
-            <Route path="enrolled-users" element={<EnrolledUsers />} />
-          </Route>
-
-
-        </Routes>
-      </div>
-    </>
+    </Routes>
   );
 }
+
 
 export default App;
