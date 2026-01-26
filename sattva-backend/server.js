@@ -18,6 +18,7 @@ import tutorApplicationRoutes from "./routes/tutorApplicationRoutes.js";
 import liveClassRoutes from "./routes/liveClassRoutes.js";
 import bookingRoutes from "./routes/bookingRoutes.js";
 import mockPaymentRoutes from "./routes/mockPaymentRoutes.js";
+import adminAnalyticsRoutes from "./routes/adminAnalyticsRoutes.js";
 
 connectDB();
 
@@ -30,6 +31,7 @@ app.use("/user", userRoutes);
 
 // Use routes
 app.use("/admin",adminRoutes);
+app.use("/admin-stats", adminAnalyticsRoutes);
 app.use("/auth",authRoutes);
 
 app.use("/poses", poseRoutes);

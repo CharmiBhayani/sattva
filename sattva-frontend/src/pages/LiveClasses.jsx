@@ -3,9 +3,11 @@ import { getUpcomingLiveClasses } from "../services/liveClassApi";
 import { getMyBookings } from "../services/bookingApi";
 import { createMockPayment, verifyMockPayment } from "../services/mockPaymentApi";
 import MockCheckout from "../components/MockCheckout";
+import { useNavigate } from "react-router-dom";
 
 export default function LiveClasses() {
-  // ✅ ALL hooks INSIDE component, TOP LEVEL
+  const navigate = useNavigate(); // 
+
   const [classes, setClasses] = useState([]);
   const [bookedClassIds, setBookedClassIds] = useState([]);
   const [intentId, setIntentId] = useState(null);
@@ -22,9 +24,14 @@ export default function LiveClasses() {
         setBookedClassIds(ids);
       });
     }
-  }, []);
+  }, [token]);
 
   const handlePay = async (cls) => {
+    if (!token) {
+      navigate("/login");
+      return;
+    }
+
     if (bookedClassIds.includes(cls._id)) {
       alert("⚠️ You have already booked this class");
       return;
@@ -74,15 +81,12 @@ export default function LiveClasses() {
               ? "Already Booked ✅"
               : "Pay & Book Class"}
           </button>
-
-          {showCheckout && (
-            <MockCheckout
-              onSuccess={handleSuccess}
-              onFail={handleFail}
-            />
-          )}
         </div>
       ))}
+
+      {showCheckout && (
+        <MockCheckout onSuccess={handleSuccess} onFail={handleFail} />
+      )}
     </div>
   );
 }
