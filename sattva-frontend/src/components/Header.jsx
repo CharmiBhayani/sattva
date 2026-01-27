@@ -83,6 +83,7 @@ export default function Header() {
               <Link to="/tutor/dashboard" className={linkClass}>Dashboard</Link>
               <Link to="/tutor/my-classes" className={linkClass}>My Classes</Link>
               <Link to="/tutor/create-class" className={linkClass}>Create Class</Link>
+              <Link to="/tutor/enrolled-users" className={linkClass}>Enrolled Users</Link>
               <button 
                 onClick={handleLogout}
                 className="px-4 py-2 bg-sattvaBrown text-sattvaCream rounded-lg font-medium text-sm 
@@ -95,7 +96,14 @@ export default function Header() {
 
           {token && role === "admin" && (
             <>
-              <Link to="/admin" className={linkClass}>Admin Dashboard</Link>
+
+
+
+              <Link to="/admin" className={linkClass}>OverView</Link>
+              <Link to="/admin/add-pose" className={linkClass}>Add Pose</Link>
+              <Link to="/admin/poses" className={linkClass}>Delete Pose</Link>
+              <Link to="/admin/tutor-requests" className={linkClass}>Requests</Link>
+              <Link to="/admin/tutors" className={linkClass}>Degrade Tutor</Link>
               <button 
                 onClick={handleLogout}
                 className="px-4 py-2 bg-sattvaBrown text-sattvaCream rounded-lg font-medium text-sm 

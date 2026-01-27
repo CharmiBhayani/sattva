@@ -27,7 +27,7 @@ export default function Login() {
         if (data.user.role === "admin") {
           window.location.href = "/admin";
         } else if (data.user.role === "tutor") {
-          window.location.href = "/tutor";
+          window.location.href = "/tutor/dashboard";
         } else {
           window.location.href = "/";
         }

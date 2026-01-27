@@ -92,7 +92,7 @@ function App() {
       {/* 🛠 ADMIN (separate layout already inside AdminDashboard) */}
       <Route
         path="/admin"
-        element={<AdminRoute><AdminDashboard /></AdminRoute>}
+        element={<AdminRoute><MainLayout /></AdminRoute>}
       >
         <Route index element={<AdminOverview />} />
         <Route path="poses" element={<ManagePoses />} />
@@ -105,7 +105,7 @@ function App() {
       {/* 👩‍🏫 TUTOR (uses TutorLayout) */}
       <Route
         path="/tutor"
-        element={<TutorRoute><TutorLayout /></TutorRoute>}
+        element={<TutorRoute><MainLayout/></TutorRoute>}
       >
         <Route path="dashboard" element={<TutorDashboard />} />
         <Route path="create-class" element={<CreateLiveClass />} />
