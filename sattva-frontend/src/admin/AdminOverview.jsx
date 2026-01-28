@@ -46,7 +46,7 @@ export default function AdminOverview() {
     <div>
       {/* Welcome Header */}
       <div className="mb-8">
-        <h2 className="text-3xl font-serif text-sattvaDark mb-2">Dashboard Overview</h2>
+        <h2 className="text-3xl font-serif text-white mb-2">Dashboard Overview</h2>
         <p className="text-sattvaBrown/70 font-light">Platform statistics and insights</p>
       </div>
 
