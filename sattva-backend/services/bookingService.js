@@ -2,7 +2,9 @@ import Booking from "../models/Booking.js";
 import LiveClass from "../models/LiveClass.js";
 
 export const createBooking = async (userId, classId) => {
-  const liveClass = await LiveClass.findById(classId);
+  const userObjectId = new mongoose.Types.ObjectId(userId);
+  const classObjectId = new mongoose.Types.ObjectId(classId);
+    const liveClass = await LiveClass.findById(classId);
 
   if (!liveClass) {
     throw new Error("Class not found");
@@ -13,8 +15,8 @@ export const createBooking = async (userId, classId) => {
   }
 
   const alreadyBooked = await Booking.findOne({
-    user: userId,
-    liveClass: classId
+    user: userObjectId,
+    liveClass: classObjectId
   });
   if (alreadyBooked) {
     throw new Error("Already booked");
