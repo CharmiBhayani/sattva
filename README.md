@@ -1,4 +1,4 @@
-🌿 Sattva — Hybrid Yoga & Wellness MERN Platform
+🌿 Sattva - Hybrid Yoga & Wellness MERN Platform
 
 Sattva is a full-stack MERN web application that connects yoga learners with professional tutors while also providing free, goal-based self-practice sessions generated from admin-curated yoga pose data.
 
