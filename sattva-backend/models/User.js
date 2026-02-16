@@ -8,7 +8,13 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum: ["user","admin","tutor"],
         default: "user"
-    }
+    },
+    isVerified: {
+        type: Boolean,
+        default: false,
+    },
+    emailOTP: String,
+    otpExpires: Date,
 });
 
 export default mongoose.model("User",userSchema);

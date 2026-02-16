@@ -1,6 +1,6 @@
 
-import dotenv from "dotenv";
-dotenv.config();
+import "./config/env.js";
+
 
 console.log("JWT_SECRET IN SERVER:", process.env.JWT_SECRET);
 
