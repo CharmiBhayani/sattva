@@ -14,5 +14,33 @@ export async function login(userData){
         headers: {"Content-Type":"application/json"},
         body: JSON.stringify(userData),
     });
-    return res.json();
+const result = await res.json();
+if(!res.ok){
+    throw new Error(result.message);
 }
+return result;
+};
+
+export const verifyEmail = async (data) => {
+  const res = await fetch("http://localhost:5000/auth/verify-email", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+
+  const result = await res.json();
+  if (!res.ok) throw new Error(result.message);
+  return result;
+};
+
+export const resendOTP = async (data) => {
+  const res = await fetch("http://localhost:5000/auth/resend-otp", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+
+  const result = await res.json();
+  if (!res.ok) throw new Error(result.message);
+  return result;
+};

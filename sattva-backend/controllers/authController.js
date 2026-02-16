@@ -99,6 +99,39 @@ export const login = async (req, res) => {
   }
 };
 
+export const resendOTP = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    const normalizedEmail = email.toLowerCase();
+    const user = await User.findOne({ email: normalizedEmail });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    if (user.isVerified) {
+      return res.status(400).json({ message: "Email already verified" });
+    }
+
+    // 🔁 Generate new OTP
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+
+    user.emailOTP = otp;
+    user.otpExpires = Date.now() + 10 * 60 * 1000; // 10 minutes
+
+    await user.save();
+
+    // 📩 Send email again
+    await sendOTPEmail(user.email, otp);
+
+    res.json({ message: "OTP resent successfully" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+
 // ================= VERIFY EMAIL =================
 export const verifyEmail = async (req, res) => {
   try {
@@ -130,3 +163,4 @@ export const verifyEmail = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+ 

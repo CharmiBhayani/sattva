@@ -17,11 +17,12 @@ export default function Signup() {
       const data = await signup({ name, email, password });
       setMessage(data.message);
 
-      if (data.message === "Signup successful") {
-        setTimeout(() => {
-          window.location.href = "/login";
-        }, 1500);
-      }
+      if (data.message.includes("verify your email")) {
+      setTimeout(() => {
+        window.location.href = `/verify-email?email=${encodeURIComponent(email)}`;
+      }, 1500);
+}
+
     } catch (error) {
       setMessage(error.message || "Signup failed. Please try again.");
     } finally {

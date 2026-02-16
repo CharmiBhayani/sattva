@@ -1,10 +1,13 @@
 import { useState, useContext } from "react";
-import { useLocation } from "react-router-dom";
-import { login } from "../services/auth";
+import { useLocation, useNavigate } from "react-router-dom";
+import { login, resendOTP } from "../services/auth";
+
 import { AuthContext } from "../context/AuthContext.jsx";
 
 export default function Login() {
   const location = useLocation();
+  const navigate = useNavigate();
+
   const msg = location.state?.message;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -33,8 +36,24 @@ export default function Login() {
         }
       }
     } catch (error) {
-      setMessage(error.message || "Login failed. Please try again.");
-    } finally {
+  const msg = error.message || "Login failed. Please try again.";
+
+  if (msg.toLowerCase().includes("verify your email")) {
+    try {
+      // 🔁 auto resend OTP
+      await resendOTP({ email });
+
+      // redirect to OTP page with message flag
+      navigate(`/verify-email?email=${encodeURIComponent(email)}&resent=true`);
+
+    } catch (resendError) {
+      setMessage("Please verify your email. Failed to resend OTP.");
+    }
+  } else {
+    setMessage(msg);
+  }
+}
+ finally {
       setLoading(false);
     }
   };
