@@ -6,6 +6,18 @@ export const signup = async(req,res)=>{
     try{
         const { name, email, password} = req.body;
 
+        //check if any field is missing
+        if (!name || !email || !password) {
+      return res.status(400).json({ message: "All fields are required" });
+        }
+
+        // ✅ email format validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ message: "Enter a valid email" });
+    }
+
+        //check dup email
         const userExists = await User.findOne({email});
         if(userExists) return res.status(400).json({message: "Email Already Registered"});
 
