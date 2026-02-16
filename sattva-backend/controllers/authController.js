@@ -4,32 +4,43 @@ import jwt from "jsonwebtoken";
 
 export const signup = async(req,res)=>{
     try{
-        const { name, email, password} = req.body;
+        const { name, email, password } = req.body;
 
-        //check if any field is missing
-        if (!name || !email || !password) {
-      return res.status(400).json({ message: "All fields are required" });
-        }
+if (!name || !email || !password) {
+  return res.status(400).json({ message: "All fields are required" });
+}
 
-        // ✅ email format validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return res.status(400).json({ message: "Enter a valid email" });
-    }
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+if (!emailRegex.test(email)) {
+  return res.status(400).json({ message: "Enter a valid email" });
+}
 
-        //check dup email
-        const userExists = await User.findOne({email});
-        if(userExists) return res.status(400).json({message: "Email Already Registered"});
+if (password.length < 6) {
+  return res.status(400).json({ message: "Password must be at least 6 characters" });
+}
 
-        const hashedPassword = await bcrypt.hash(password, 10);
+const normalizedEmail = email.toLowerCase();
 
-        const user = await User.create({
-            name,
-            email,
-            password: hashedPassword
-        });
+const userExists = await User.findOne({ email: normalizedEmail });
+if (userExists) {
+  return res.status(400).json({ message: "Email already registered" });
+}
 
-        res.status(201).json({message: "Signup Successful",user});
+const hashedPassword = await bcrypt.hash(password, 10);
+
+const user = await User.create({
+  name,
+  email: normalizedEmail,
+  password: hashedPassword,
+});
+
+const { password: _, ...userWithoutPassword } = user._doc;
+
+res.status(201).json({
+  message: "Signup Successful",
+  user: userWithoutPassword,
+});
+
     }
     catch(error){
         res.status(500).json({message: error.message});
