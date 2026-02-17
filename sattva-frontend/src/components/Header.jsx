@@ -14,7 +14,7 @@ export default function Header() {
 };
 
   // Enhanced link styling with elegant underline animation
-  const linkClass = "text-sattvaBrown hover:text-sattvaDark transition-all duration-300 relative pb-1 after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:h-[1.5px] after:w-0 after:bg-gradient-to-r after:from-transparent after:via-sattvaBrown after:to-transparent hover:after:w-full after:transition-all after:duration-500 font-light tracking-wide text-sm uppercase";
+  const linkClass = " text-white/80 hover:text-sattvaDark transition-all duration-300 relative pb-1 after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:h-[1.5px] after:w-0 after:bg-gradient-to-r after:from-transparent after:via-sattvaBrown after:to-transparent hover:after:w-full after:transition-all after:duration-500 font-bold tracking-wide text-sm uppercase";
 
   return (
     <header className="bg-gradient-to-b from-sattvaCream to-sattvaBeige/30 shadow-md relative">
