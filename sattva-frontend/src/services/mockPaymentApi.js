@@ -1,5 +1,5 @@
-export const createMockPayment = async (classId, token) => {
-  const res = await fetch("http://localhost:5000/mock-payments/create", {
+export const createPayment = async (classId, token) => {
+  const res = await fetch("http://localhost:5000/payment/create", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -7,17 +7,20 @@ export const createMockPayment = async (classId, token) => {
     },
     body: JSON.stringify({ classId })
   });
+
   return res.json();
 };
 
-export const verifyMockPayment = async (intentId, status, token) => {
-  const res = await fetch("http://localhost:5000/mock-payments/verify", {
+
+export const verifyPayment = async (data, token) => {
+  const res = await fetch("http://localhost:5000/payment/verify", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`
     },
-    body: JSON.stringify({ intentId, status })
+    body: JSON.stringify(data)
   });
+
   return res.json();
 };

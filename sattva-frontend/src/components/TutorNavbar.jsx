@@ -22,6 +22,7 @@ export default function TutorNavbar() {
         <Link to="/tutor/create-class" className="hover:underline">Create Class</Link>
         <Link to="/tutor/my-classes" className="hover:underline">My Classes</Link>
         <Link to="/tutor/enrolled-users" className="hover:underline">Students</Link>
+        <Link to="/tutor/wallet" className="hover:underline">Wallet</Link>
 
         <button
           onClick={handleLogout}

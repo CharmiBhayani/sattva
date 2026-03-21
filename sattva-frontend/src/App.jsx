@@ -26,13 +26,16 @@ import ManagePoses from "./admin/ManagePoses";
 import AdminTutorRequests from "./admin/AdminTutorRequests";
 import AdminTutorRequestDetail from "./admin/AdminTutorRequestDetail";
 import AdminTutors from "./admin/AdminTutors";
+import AdminPayouts from "./admin/AdminPayouts";
 // TUTOR
 import TutorLayout from "./layouts/TutorLayout";
 import TutorDashboard from "./tutor/TutorDashboard";
 import CreateLiveClass from "./tutor/CreateLiveClass";
 import MyLiveClasses from "./tutor/MyLiveClass";
 import EnrolledUsers from "./tutor/EnrolledUsers";
+import TutorWallet from "./tutor/TutorWallet";
 import AdminOverview from "./admin/AdminOverview";
+import AdminPayments from "./admin/adminPayments";
 
 function App() {
   const token = localStorage.getItem("token");
@@ -99,21 +102,24 @@ function App() {
       >
         <Route index element={<AdminOverview />} />
         <Route path="poses" element={<ManagePoses />} />
+        <Route path="payments" element={<AdminPayments />} />
         <Route path="add-pose" element={<AddPose />} />
         <Route path="tutor-requests" element={<AdminTutorRequests />} />
         <Route path="tutor-requests/:id" element={<AdminTutorRequestDetail />} />
         <Route path="tutors" element={<AdminTutors />} />
+        <Route path="tutor-payouts" element={<AdminPayouts />} />
       </Route>
 
       {/* 👩‍🏫 TUTOR (uses TutorLayout) */}
       <Route
         path="/tutor"
-        element={<TutorRoute><MainLayout/></TutorRoute>}
+        element={<TutorRoute><MainLayout /></TutorRoute>}
       >
         <Route path="dashboard" element={<TutorDashboard />} />
         <Route path="create-class" element={<CreateLiveClass />} />
         <Route path="my-classes" element={<MyLiveClasses />} />
         <Route path="enrolled-users" element={<EnrolledUsers />} />
+        <Route path="wallet" element={<TutorWallet />} />
       </Route>
 
     </Routes>

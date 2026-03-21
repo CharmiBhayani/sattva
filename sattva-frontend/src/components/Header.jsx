@@ -8,10 +8,10 @@ export default function Header() {
   const role = user?.role;
 
   const handleLogout = () => {
-  localStorage.clear();
-  navigate("/", { replace: true });
-  window.location.reload(); // ensures all auth logic resets
-};
+    localStorage.clear();
+    navigate("/", { replace: true });
+    window.location.reload(); // ensures all auth logic resets
+  };
 
   // Enhanced link styling with elegant underline animation
   const linkClass = " text-white/80 hover:text-sattvaDark transition-all duration-300 relative pb-1 after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:h-[1.5px] after:w-0 after:bg-gradient-to-r after:from-transparent after:via-sattvaBrown after:to-transparent hover:after:w-full after:transition-all after:duration-500 font-bold tracking-wide text-sm uppercase";
@@ -20,15 +20,15 @@ export default function Header() {
     <header className="bg-gradient-to-b from-sattvaCream to-sattvaBeige/30 shadow-md relative">
       {/* Subtle top accent line */}
       <div className="h-1 bg-gradient-to-r from-transparent via-sattvaBrown/20 to-transparent"></div>
-      
+
       <div className="max-w-7xl mx-auto px-6 py-6">
-        
+
         {/* LOGO - CENTERED */}
         <div className="flex justify-center mb-6">
           <div className="relative group">
             {/* Decorative glow behind logo */}
             <div className="absolute inset-0 bg-white/40 rounded-full blur-2xl scale-110 group-hover:scale-125 transition-transform duration-500"></div>
-            
+
             <img
               src={logo}
               alt="Sattva - A State of Wellness"
@@ -41,9 +41,9 @@ export default function Header() {
         {/* Decorative lotus divider */}
         <div className="flex justify-center mb-5">
           <svg className="w-20 h-2 text-sattvaBrown/20" viewBox="0 0 100 12" fill="currentColor">
-            <path d="M50 0C50 0 48 4 48 8C48 10 49 11 50 11C51 11 52 10 52 8C52 4 50 0 50 0Z"/>
-            <path d="M42 2C42 2 40 5 40 8C40 9.5 41 11 42.5 11C44 11 45 9.5 45 8C45 5 42 2 42 2Z"/>
-            <path d="M58 2C58 2 60 5 60 8C60 9.5 59 11 57.5 11C56 11 55 9.5 55 8C55 5 58 2 58 2Z"/>
+            <path d="M50 0C50 0 48 4 48 8C48 10 49 11 50 11C51 11 52 10 52 8C52 4 50 0 50 0Z" />
+            <path d="M42 2C42 2 40 5 40 8C40 9.5 41 11 42.5 11C44 11 45 9.5 45 8C45 5 42 2 42 2Z" />
+            <path d="M58 2C58 2 60 5 60 8C60 9.5 59 11 57.5 11C56 11 55 9.5 55 8C55 5 58 2 58 2Z" />
           </svg>
         </div>
 
@@ -68,8 +68,8 @@ export default function Header() {
               <Link to="/my-bookings" className={linkClass}>My Bookings</Link>
               <Link to="/apply-tutor" className={linkClass}>Become a Tutor</Link>
               <Link to="/profile" className={linkClass}>Profile</Link>
-              
-              <button 
+
+              <button
                 onClick={handleLogout}
                 className="px-4 py-2 bg-sattvaBrown text-sattvaCream rounded-lg font-medium text-sm 
                          hover:bg-sattvaDark transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg uppercase tracking-wide"
@@ -85,7 +85,8 @@ export default function Header() {
               <Link to="/tutor/my-classes" className={linkClass}>My Classes</Link>
               <Link to="/tutor/create-class" className={linkClass}>Create Class</Link>
               <Link to="/tutor/enrolled-users" className={linkClass}>Enrolled Users</Link>
-              <button 
+              <Link to="/tutor/wallet" className={linkClass}>Wallet</Link>
+              <button
                 onClick={handleLogout}
                 className="px-4 py-2 bg-sattvaBrown text-sattvaCream rounded-lg font-medium text-sm 
                          hover:bg-sattvaDark transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg uppercase tracking-wide"
@@ -105,7 +106,8 @@ export default function Header() {
               <Link to="/admin/poses" className={linkClass}>Delete Pose</Link>
               <Link to="/admin/tutor-requests" className={linkClass}>Requests</Link>
               <Link to="/admin/tutors" className={linkClass}>Degrade Tutor</Link>
-              <button 
+              <Link to="/admin/tutor-payouts" className={linkClass}>Payouts</Link>
+              <button
                 onClick={handleLogout}
                 className="px-4 py-2 bg-sattvaBrown text-sattvaCream rounded-lg font-medium text-sm 
                          hover:bg-sattvaDark transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg uppercase tracking-wide"

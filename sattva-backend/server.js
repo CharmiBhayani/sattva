@@ -17,7 +17,7 @@ import userRoutes from "./routes/userRoutes.js";
 import tutorApplicationRoutes from "./routes/tutorApplicationRoutes.js";
 import liveClassRoutes from "./routes/liveClassRoutes.js";
 import bookingRoutes from "./routes/bookingRoutes.js";
-import mockPaymentRoutes from "./routes/mockPaymentRoutes.js";
+import paymentRoutes from "./routes/paymentRoutes.js";
 import adminAnalyticsRoutes from "./routes/adminAnalyticsRoutes.js";
 
 connectDB();
@@ -40,7 +40,7 @@ app.use("/session",sessionRoutes);
 app.use("/tutor-applications", tutorApplicationRoutes);
 app.use("/live-classes", liveClassRoutes);
 app.use("/bookings", bookingRoutes);
-app.use("/mock-payments", mockPaymentRoutes);
+app.use("/payment",paymentRoutes);
 
 app.listen(5000, () => {
   console.log("Server started on http://localhost:5000");

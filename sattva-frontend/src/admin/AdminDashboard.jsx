@@ -9,18 +9,17 @@ export default function AdminDashboard() {
   };
 
   const linkClass = ({ isActive }) =>
-    `block px-3 py-2 rounded ${
-      isActive
-        ? "bg-calmBlue text-white"
-        : "text-white hover:bg-calmBlue/30"
+    `block px-3 py-2 rounded ${isActive
+      ? "bg-calmBlue text-white"
+      : "text-white hover:bg-calmBlue/30"
     }`;
 
   return (
     <div className="flex min-h-screen">
-      
+
       {/* Sidebar */}
       <aside className="w-64 bg-calmNavy text-white p-5 flex flex-col justify-between">
-        
+
         {/* Top Links */}
         <div className="space-y-4">
           <h2 className="text-xl font-bold mb-4">Admin Panel</h2>
@@ -43,6 +42,10 @@ export default function AdminDashboard() {
 
           <NavLink to="/admin/tutors" className={linkClass}>
             Tutors
+          </NavLink>
+
+          <NavLink to="/admin/tutor-payouts" className={linkClass}>
+            Tutor Payouts
           </NavLink>
         </div>
 
