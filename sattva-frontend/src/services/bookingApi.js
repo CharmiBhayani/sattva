@@ -1,5 +1,8 @@
+const BASE_URL =
+  import.meta.env.VITE_API_URL || "http://localhost:5000";
+
 export const bookLiveClass = async (classId, token) => {
-  const res = await fetch("http://localhost:5000/bookings", {
+  const res = await fetch(`${BASE_URL}/bookings`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -25,7 +28,7 @@ export const bookLiveClass = async (classId, token) => {
 };
 
 export const getMyBookings = async (token) => {
-  const res = await fetch("http://localhost:5000/bookings/mine", {
+  const res = await fetch(`${BASE_URL}/bookings/mine`, {
     headers: {
       Authorization: `Bearer ${token}`
     }
@@ -40,7 +43,7 @@ export const getMyBookings = async (token) => {
 };
 
 export const getTutorEnrollments = async (token) => {
-  const res = await fetch("http://localhost:5000/bookings/tutor", {
+  const res = await fetch(`${BASE_URL}/bookings/tutor`, {
     headers: {
       Authorization: `Bearer ${token}`
     }

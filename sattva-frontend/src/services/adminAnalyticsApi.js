@@ -1,5 +1,5 @@
-const BASE_URL = "http://localhost:5000/admin-stats";
-
+const BASE_URL =
+  `${import.meta.env.VITE_API_URL || "http://localhost:5000"}/admin-stats`;
 
 export const getAdminOverview = async (token) => {
   const res = await fetch(`${BASE_URL}/overview`, {
@@ -15,7 +15,6 @@ export const getAdminOverview = async (token) => {
   return res.json();
 };
 
-
 export const getAllPayments = async (token) => {
   const res = await fetch(`${BASE_URL}/payments`, {
     headers: {
@@ -29,8 +28,6 @@ export const getAllPayments = async (token) => {
 
   return res.json();
 };
-
-
 
 export const getPaymentById = async (paymentId, token) => {
   const res = await fetch(`${BASE_URL}/payments/${paymentId}`, {

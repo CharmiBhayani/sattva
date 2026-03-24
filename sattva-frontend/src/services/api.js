@@ -1,11 +1,11 @@
-const API_URL = "http://localhost:5000";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export const getAllPoses = async () => {
   const res = await fetch(`${API_URL}/poses`);
   return res.json();
 };
 
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 export const createSession = async (sessionData, token) => {
   const response = await fetch(`${BASE_URL}/session`, {

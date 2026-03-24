@@ -1,5 +1,8 @@
+const BASE_URL =
+  import.meta.env.VITE_API_URL || "http://localhost:5000";
+
 export const createPayment = async (classId, token) => {
-  const res = await fetch("http://localhost:5000/payment/create", {
+  const res = await fetch(`${BASE_URL}/payment/create`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -11,9 +14,8 @@ export const createPayment = async (classId, token) => {
   return res.json();
 };
 
-
 export const verifyPayment = async (data, token) => {
-  const res = await fetch("http://localhost:5000/payment/verify", {
+  const res = await fetch(`${BASE_URL}/payment/verify`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
