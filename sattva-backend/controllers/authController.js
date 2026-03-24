@@ -72,9 +72,7 @@ export const login = async (req, res) => {
     }
 
     // 🚫 Block login if not verified
-    if (!user.isVerified) {
-      return res.status(403).json({ message: "Please verify your email first" });
-    }
+    
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
