@@ -101,7 +101,7 @@ Mock payment API → updates status to paid
 
 Paid sessions appear in My Bookings
 
-Easily replaceable with Razorpay / Stripe
+Razorpay payment gateway
 
 🧩 Tech Stack
 Frontend
@@ -210,13 +210,16 @@ Fully responsive layouts
 
 📈 Future Enhancements
 
-Razorpay or Stripe payment integration
-
 Real-time live class streaming
 
 Email notifications for bookings
 
 AI-based session recommendations
+
+
+
+Live At: https://69c2d0762347c5dd4f01c500--fabulous-pithivier-33d376.netlify.app/
+Signup is under construction:: (sendMail is breaking the signup) 
 
 👩‍💻 Author
 
