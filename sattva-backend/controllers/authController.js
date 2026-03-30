@@ -22,31 +22,39 @@ export const signup = async (req, res) => {
     }
 
     const normalizedEmail = email.toLowerCase();
-
-    const userExists = await User.findOne({ email: normalizedEmail });
-    if (userExists) {
-      return res.status(400).json({ message: "Email already registered" });
-    }
-
     const hashedPassword = await bcrypt.hash(password, 10);
-
-    const user = await User.create({
-      name,
-      email: normalizedEmail,
-      password: hashedPassword,
-      isVerified: false,
-    });
-
-    // 🔢 Generate OTP
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
 
-    user.emailOTP = otp;
-    user.otpExpires = Date.now() + 10 * 60 * 1000; // 10 minutes
-
-    await user.save();
+    let user = await User.findOne({ email: normalizedEmail });
+    if (user) {
+      if (user.isVerified) {
+        return res.status(400).json({ message: "Email already registered" });
+      } else {
+        // Update unverified user to allow them to retry
+        user.name = name;
+        user.password = hashedPassword;
+        user.emailOTP = otp;
+        user.otpExpires = Date.now() + 10 * 60 * 1000; // 10 minutes
+        await user.save();
+      }
+    } else {
+      user = await User.create({
+        name,
+        email: normalizedEmail,
+        password: hashedPassword,
+        isVerified: false,
+        emailOTP: otp,
+        otpExpires: Date.now() + 10 * 60 * 1000,
+      });
+    }
 
     // 📩 Send OTP email
-    await sendOTPEmail(user.email, otp);
+    try {
+      await sendOTPEmail(user.email, otp);
+    } catch (emailError) {
+      console.error("Email sending failed:", emailError);
+      return res.status(500).json({ message: "Failed to send email. Check configuration." });
+    }
 
     const { password: _, ...userWithoutPassword } = user._doc;
 

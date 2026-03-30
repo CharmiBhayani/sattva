@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import { login, resendOTP } from "../services/auth";
 
 import { AuthContext } from "../context/AuthContext.jsx";
@@ -28,11 +28,11 @@ export default function Login() {
       if (data.token) {
         loginUser(data.token, data.user);
         if (data.user.role === "admin") {
-          window.location.href = "/admin";
+          navigate("/admin");
         } else if (data.user.role === "tutor") {
-          window.location.href = "/tutor/dashboard";
+          navigate("/tutor/dashboard");
         } else {
-          window.location.href = "/";
+          navigate("/");
         }
       }
     } catch (error) {
@@ -196,14 +196,14 @@ export default function Login() {
           {/* Sign Up Link */}
           <p className="text-center text-sm text-sattvaBrown/70 font-light">
             Don't have an account?{" "}
-            <a 
-              href="/signup" 
+            <Link 
+              to="/signup" 
               className="text-sattvaBrown font-medium hover:text-sattvaDark transition-colors duration-300 relative
                        after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-0 after:bg-sattvaBrown 
                        hover:after:w-full after:transition-all after:duration-300"
             >
               Sign Up
-            </a>
+            </Link>
           </p>
         </div>
 

@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { signup } from "../services/auth";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Signup() {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,7 +21,7 @@ export default function Signup() {
 
       if (data.message.includes("verify your email")) {
       setTimeout(() => {
-        window.location.href = `/verify-email?email=${encodeURIComponent(email)}`;
+        navigate(`/verify-email?email=${encodeURIComponent(email)}`);
       }, 1500);
 }
 
@@ -189,14 +191,14 @@ export default function Signup() {
           {/* Login Link */}
           <p className="text-center text-sm text-sattvaBrown/70 font-light">
             Already have an account?{" "}
-            <a 
-              href="/login" 
+            <Link 
+              to="/login" 
               className="text-sattvaBrown font-medium hover:text-sattvaDark transition-colors duration-300 relative
                        after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-0 after:bg-sattvaBrown 
                        hover:after:w-full after:transition-all after:duration-300"
             >
               Sign In
-            </a>
+            </Link>
           </p>
         </div>
 
