@@ -220,7 +220,7 @@ AI-based session recommendations
 
 Live At:
 https://fabulous-pithivier-33d376.netlify.app/
-Signup is under construction:: (sendMail is breaking the signup) 
+
 
 👩‍💻 Author
 
