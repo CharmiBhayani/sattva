@@ -23,7 +23,10 @@ import adminAnalyticsRoutes from "./routes/adminAnalyticsRoutes.js";
 connectDB();
 
 const app = express();
-app.use(cors()); 
+app.use(cors({
+  origin: "https://fabulous-pithivier-33d376.netlify.app",
+  credentials: true
+}));
 console.log("SERVER FILE LOADED");
 
 app.use(express.json());

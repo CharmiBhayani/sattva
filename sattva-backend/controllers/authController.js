@@ -50,10 +50,13 @@ export const signup = async (req, res) => {
 
     // 📩 Send OTP email
     try {
-      await sendOTPEmail(user.email, otp);
+      await sendOTPEmail(normalizedEmail, otp);
     } catch (emailError) {
-      console.error("Email sending failed:", emailError);
-      return res.status(500).json({ message: "Failed to send email. Check configuration." });
+      console.error("Email sending failed:", emailError.message);
+      return res.status(500).json({ 
+        message: "Failed to send email. Check configuration.",
+        error: emailError.message // Temporary for debugging
+      });
     }
 
     const { password: _, ...userWithoutPassword } = user._doc;
