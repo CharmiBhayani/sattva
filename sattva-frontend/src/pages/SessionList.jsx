@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import { getAllSessions } from "../services/api";
 import { AuthContext } from "../context/AuthContext.jsx";
+import { Sun, Sunset, Moon } from "lucide-react";
 
 export default function SessionList() {
   const [sessions, setSessions] = useState([]);
@@ -26,17 +27,17 @@ export default function SessionList() {
     Morning: {
       bg: "from-amber-50 to-white",
       border: "border-amber-200",
-      icon: "☀️"
+      icon: <Sun className="w-6 h-6 text-amber-500" />
     },
     Evening: {
       bg: "from-orange-50 to-white",
       border: "border-orange-200",
-      icon: "🌅"
+      icon: <Sunset className="w-6 h-6 text-orange-500" />
     },
     Night: {
       bg: "from-indigo-50 to-white",
       border: "border-indigo-200",
-      icon: "🌙"
+      icon: <Moon className="w-6 h-6 text-indigo-400" />
     }
   };
 
@@ -130,7 +131,7 @@ export default function SessionList() {
                       <div className="flex justify-between items-start mb-4">
                         <div className="flex-1">
                           <div className="flex items-center gap-3 mb-2">
-                            <span className="text-2xl">{timeTheme.icon}</span>
+                            <span className="flex-shrink-0">{timeTheme.icon}</span>
                             <h3 className="text-2xl font-serif text-sattvaDark">
                               {session.title}
                             </h3>

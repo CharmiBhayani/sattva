@@ -49,7 +49,7 @@ export default function AdminTutorRequestDetail() {
         }
       );
 
-      alert(`✨ Application ${type}d successfully!`);
+      alert(`Application ${type}d successfully!`);
       navigate("/admin/tutor-requests");
     } catch (err) {
       alert(`Failed to ${type} application: ${err.message}`);

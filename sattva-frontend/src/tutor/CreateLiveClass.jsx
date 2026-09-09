@@ -35,7 +35,7 @@ export default function CreateLiveClass() {
         token
       );
 
-      alert("✨ Live class created successfully!");
+      alert("Live class created successfully!");
       navigate("/tutor/my-classes");
     } catch (err) {
       setError(err.message || "Failed to create class");

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAdminOverview } from "../services/adminAnalyticsApi.js";
+import { ClipboardCheck, Layers, Users } from "lucide-react";
 
 export default function AdminOverview() {
   const [stats, setStats] = useState(null);
@@ -107,23 +108,26 @@ export default function AdminOverview() {
 
           <a
             href="/admin/tutor-requests"
-            className="p-4 bg-sattvaCream rounded-xl border hover:shadow-md transition text-center"
+            className="p-4 bg-sattvaCream rounded-xl border border-sattvaBeige/60 hover:shadow-md hover:border-sattvaBrown/30 transition flex items-center justify-center gap-2 text-sattvaDark font-medium"
           >
-            📋 Review Applications
+            <ClipboardCheck className="w-5 h-5 text-sattvaBrown" />
+            Review Applications
           </a>
 
           <a
             href="/admin/poses"
-            className="p-4 bg-sattvaCream rounded-xl border hover:shadow-md transition text-center"
+            className="p-4 bg-sattvaCream rounded-xl border border-sattvaBeige/60 hover:shadow-md hover:border-sattvaBrown/30 transition flex items-center justify-center gap-2 text-sattvaDark font-medium"
           >
-            🧘 Manage Poses
+            <Layers className="w-5 h-5 text-sattvaBrown" />
+            Manage Poses
           </a>
 
           <a
             href="/admin/tutors"
-            className="p-4 bg-sattvaCream rounded-xl border hover:shadow-md transition text-center"
+            className="p-4 bg-sattvaCream rounded-xl border border-sattvaBeige/60 hover:shadow-md hover:border-sattvaBrown/30 transition flex items-center justify-center gap-2 text-sattvaDark font-medium"
           >
-            👥 View All Tutors
+            <Users className="w-5 h-5 text-sattvaBrown" />
+            View All Tutors
           </a>
 
         </div>

@@ -1,5 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { CheckCircle2, Clock } from "lucide-react";
 import {
   applyTutor,
   getMyTutorApplication
@@ -156,8 +157,9 @@ export default function ApplyTutor() {
             {/* Action Messages */}
             {application.status === "approved" && (
               <div className="mt-6 p-4 bg-green-100 border border-green-300 rounded-xl text-center">
-                <p className="text-green-700 font-medium mb-2">
-                  🎉 Congratulations! You're now a tutor
+                <p className="text-green-700 font-medium mb-2 flex items-center justify-center gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-green-600" />
+                  Congratulations! You're now a tutor
                 </p>
                 <p className="text-sm text-green-600">
                   Please logout and login again to access your Tutor Dashboard
@@ -167,8 +169,9 @@ export default function ApplyTutor() {
 
             {application.status === "pending" && (
               <div className="mt-6 p-4 bg-yellow-100 border border-yellow-300 rounded-xl text-center">
-                <p className="text-yellow-700 font-medium">
-                  ⏳ Please be patient while we review your application
+                <p className="text-yellow-700 font-medium flex items-center justify-center gap-2">
+                  <Clock className="w-5 h-5 text-yellow-600" />
+                  Please be patient while we review your application
                 </p>
               </div>
             )}

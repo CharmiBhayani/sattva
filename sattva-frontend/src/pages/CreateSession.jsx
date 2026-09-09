@@ -31,7 +31,7 @@ function CreateSession() {
         token
       );
 
-      alert("✨ Session created successfully!");
+      alert("Session created successfully!");
       navigate("/sessions");
     } catch (err) {
       setError(err.message || "Failed to create session");

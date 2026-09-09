@@ -1,4 +1,5 @@
 import lotusCurve from "../assets/lotusbg.png"; // thin lotus line
+import { Mail, MapPin, Heart } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -44,12 +45,12 @@ export default function Footer() {
                   href="mailto:sattvalife4@gmail.com" 
                   className="text-sattvaBrown hover:text-sattvaDark transition-colors duration-300 inline-flex items-center gap-2 font-light justify-center md:justify-end"
                 >
-                  <span className="text-base">📧</span>
+                  <Mail className="w-4 h-4 text-sattvaBrown" />
                   sattvalife4@gmail.com
                 </a>
               </div>
               <div className="text-sattvaBrown/80 inline-flex items-center gap-2 font-light justify-center md:justify-end">
-                <span className="text-base">📍</span>
+                <MapPin className="w-4 h-4 text-sattvaBrown" />
                 India
               </div>
             </div>
@@ -64,8 +65,8 @@ export default function Footer() {
           <p className="text-xs text-sattvaBrown/70 font-light">
             © 2026 Sattva • All rights reserved
           </p>
-          <p className="italic text-sattvaDark/70 text-sm pt-2 font-light">
-            Made with mindfulness ♡
+          <p className="italic text-sattvaDark/70 text-sm pt-2 font-light inline-flex items-center justify-center gap-1.5">
+            Made with mindfulness <Heart className="w-3.5 h-3.5 fill-sattvaBrown/30 text-sattvaBrown inline" />
           </p>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { verifyEmail, resendOTP } from "../services/auth";
+import { ShieldCheck } from "lucide-react";
 
 export default function VerifyEmail() {
   const [searchParams] = useSearchParams();
@@ -13,14 +14,14 @@ export default function VerifyEmail() {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // 🌿 Show message if OTP was auto-resent from login
+  // Show message if OTP was auto-resent from login
   useEffect(() => {
     if (resent) {
-      setMessage("A new OTP has been sent to your email 🌿");
+      setMessage("A new OTP has been sent to your email.");
     }
   }, [resent]);
 
-  // ❗ Prevent direct access without email
+  // Prevent direct access without email
   if (!email) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -61,8 +62,14 @@ export default function VerifyEmail() {
     <div className="min-h-screen bg-gradient-to-br from-sattvaCream via-sattvaBeige/30 to-sattvaCream flex items-center justify-center py-12 px-4">
       <div className="w-full max-w-md bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-8 border border-sattvaBeige/50">
 
+        <div className="flex justify-center mb-3">
+          <div className="w-12 h-12 rounded-full bg-sattvaBrown/10 flex items-center justify-center text-sattvaBrown">
+            <ShieldCheck className="w-6 h-6" />
+          </div>
+        </div>
+
         <h2 className="text-3xl font-serif text-sattvaDark mb-4 text-center">
-          Verify Your Email 🌿
+          Verify Your Email
         </h2>
 
         <p className="text-center text-sm text-sattvaBrown/70 mb-6">

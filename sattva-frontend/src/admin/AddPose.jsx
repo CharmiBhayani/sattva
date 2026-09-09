@@ -45,7 +45,7 @@ export default function AddPose() {
 
     try {
       await createPose(form, token);
-      alert("✨ Pose added successfully!");
+      alert("Pose added successfully!");
       navigate("/admin/poses");
     } catch (err) {
       setError(err.message || "Failed to add pose");

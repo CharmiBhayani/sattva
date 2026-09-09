@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Activity, Sparkles, Sun } from "lucide-react";
 
 export default function Home() {
   return (
@@ -74,8 +75,10 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-24 max-w-5xl">
           
           {/* Feature 1 */}
-          <div className="group p-6 bg-sattvaCream/5 backdrop-blur-sm rounded-2xl border border-sattvaCream/10 hover:border-sattvaCream/30 transition-all duration-300 hover:scale-105">
-            <div className="text-4xl mb-4">🧘‍♀️</div>
+          <div className="group p-6 bg-sattvaCream/5 backdrop-blur-sm rounded-2xl border border-sattvaCream/10 hover:border-sattvaCream/30 transition-all duration-300 hover:scale-105 flex flex-col items-center text-center">
+            <div className="w-12 h-12 rounded-xl bg-sattvaCream/10 flex items-center justify-center mb-4 text-sattvaCream group-hover:bg-sattvaCream group-hover:text-sattvaDark transition-all duration-300">
+              <Activity className="w-6 h-6" />
+            </div>
             <h3 className="text-sattvaCream font-semibold mb-2 text-lg">Personalized Practice</h3>
             <p className="text-sattvaCream/70 text-sm font-light">
               Tailored yoga sessions for your unique needs and goals
@@ -83,8 +86,10 @@ export default function Home() {
           </div>
 
           {/* Feature 2 */}
-          <div className="group p-6 bg-sattvaCream/5 backdrop-blur-sm rounded-2xl border border-sattvaCream/10 hover:border-sattvaCream/30 transition-all duration-300 hover:scale-105">
-            <div className="text-4xl mb-4">🌸</div>
+          <div className="group p-6 bg-sattvaCream/5 backdrop-blur-sm rounded-2xl border border-sattvaCream/10 hover:border-sattvaCream/30 transition-all duration-300 hover:scale-105 flex flex-col items-center text-center">
+            <div className="w-12 h-12 rounded-xl bg-sattvaCream/10 flex items-center justify-center mb-4 text-sattvaCream group-hover:bg-sattvaCream group-hover:text-sattvaDark transition-all duration-300">
+              <Sparkles className="w-6 h-6" />
+            </div>
             <h3 className="text-sattvaCream font-semibold mb-2 text-lg">Mindful Living</h3>
             <p className="text-sattvaCream/70 text-sm font-light">
               Cultivate awareness through conscious practices
@@ -92,8 +97,10 @@ export default function Home() {
           </div>
 
           {/* Feature 3 */}
-          <div className="group p-6 bg-sattvaCream/5 backdrop-blur-sm rounded-2xl border border-sattvaCream/10 hover:border-sattvaCream/30 transition-all duration-300 hover:scale-105">
-            <div className="text-4xl mb-4">✨</div>
+          <div className="group p-6 bg-sattvaCream/5 backdrop-blur-sm rounded-2xl border border-sattvaCream/10 hover:border-sattvaCream/30 transition-all duration-300 hover:scale-105 flex flex-col items-center text-center">
+            <div className="w-12 h-12 rounded-xl bg-sattvaCream/10 flex items-center justify-center mb-4 text-sattvaCream group-hover:bg-sattvaCream group-hover:text-sattvaDark transition-all duration-300">
+              <Sun className="w-6 h-6" />
+            </div>
             <h3 className="text-sattvaCream font-semibold mb-2 text-lg">Inner Balance</h3>
             <p className="text-sattvaCream/70 text-sm font-light">
               Find harmony between body, mind, and spirit

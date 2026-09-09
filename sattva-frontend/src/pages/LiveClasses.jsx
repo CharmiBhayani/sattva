@@ -33,7 +33,7 @@ export default function LiveClasses() {
     }
 
     if (bookedClassIds.includes(cls._id)) {
-      alert("⚠️ You have already booked this class");
+      alert("You have already booked this class.");
       return;
     }
 
