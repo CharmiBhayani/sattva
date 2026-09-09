@@ -1,6 +1,26 @@
 const BASE_URL =
   import.meta.env.VITE_API_URL || "http://localhost:5000";
 
+async function parseResponse(res) {
+  const contentType = res.headers.get("content-type");
+  if (contentType && contentType.includes("application/json")) {
+    const data = await res.json();
+    if (!res.ok) {
+      throw new Error(data.message || "Request failed");
+    }
+    return data;
+  }
+
+  if (!res.ok) {
+    if (res.status === 404) {
+      throw new Error("API endpoint not found. Please ensure the backend is running and up-to-date.");
+    }
+    throw new Error(`Server returned an error (${res.status}). Please check backend status.`);
+  }
+
+  return {};
+}
+
 export async function signup(userData) {
   const res = await fetch(`${BASE_URL}/auth/signup`, {
     method: "POST",
@@ -8,7 +28,7 @@ export async function signup(userData) {
     body: JSON.stringify(userData),
   });
 
-  return res.json();
+  return parseResponse(res);
 }
 
 export async function login(userData) {
@@ -18,12 +38,7 @@ export async function login(userData) {
     body: JSON.stringify(userData),
   });
 
-  const result = await res.json();
-  if (!res.ok) {
-    throw new Error(result.message);
-  }
-
-  return result;
+  return parseResponse(res);
 }
 
 export const verifyEmail = async (data) => {
@@ -33,9 +48,7 @@ export const verifyEmail = async (data) => {
     body: JSON.stringify(data),
   });
 
-  const result = await res.json();
-  if (!res.ok) throw new Error(result.message);
-  return result;
+  return parseResponse(res);
 };
 
 export const resendOTP = async (data) => {
@@ -45,9 +58,7 @@ export const resendOTP = async (data) => {
     body: JSON.stringify(data),
   });
 
-  const result = await res.json();
-  if (!res.ok) throw new Error(result.message);
-  return result;
+  return parseResponse(res);
 };
 
 export const forgotPassword = async (data) => {
@@ -57,9 +68,7 @@ export const forgotPassword = async (data) => {
     body: JSON.stringify(data),
   });
 
-  const result = await res.json();
-  if (!res.ok) throw new Error(result.message);
-  return result;
+  return parseResponse(res);
 };
 
 export const resetPassword = async (data) => {
@@ -69,7 +78,5 @@ export const resetPassword = async (data) => {
     body: JSON.stringify(data),
   });
 
-  const result = await res.json();
-  if (!res.ok) throw new Error(result.message);
-  return result;
+  return parseResponse(res);
 };
