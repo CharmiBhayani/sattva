@@ -12,6 +12,7 @@ import ApplyTutor from "./pages/ApplyTutor";
 import LiveClasses from "./pages/LiveClasses";
 import VerifyEmail from "./pages/VerifyEmail";
 import MyBookedClasses from "./pages/MyBookedClasses";
+import ForgotPassword from "./pages/ForgotPassword";
 
 
 
@@ -51,6 +52,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/verify-email" element={<VerifyEmail />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
 
         <Route
           path="/"

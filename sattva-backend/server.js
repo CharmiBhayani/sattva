@@ -23,8 +23,20 @@ import adminAnalyticsRoutes from "./routes/adminAnalyticsRoutes.js";
 connectDB();
 
 const app = express();
+const allowedOrigins = [
+  "https://fabulous-pithivier-33d376.netlify.app",
+  "http://localhost:5173",
+  "http://localhost:3000"
+];
+
 app.use(cors({
-  origin: "https://fabulous-pithivier-33d376.netlify.app",
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(null, true);
+    }
+  },
   credentials: true
 }));
 console.log("SERVER FILE LOADED");
