@@ -77,15 +77,15 @@ export default function ManagePoses() {
         </div>
 
         {/* Filter Tabs */}
-        <div className="flex gap-2 bg-white/80 backdrop-blur-sm rounded-xl p-2 border border-sattvaBeige/50 inline-flex">
+        <div className="flex gap-2 bg-white/90 backdrop-blur-sm rounded-xl p-1.5 border border-sattvaBeige/60 shadow-sm inline-flex">
           {["All", "Easy", "Medium", "Hard"].map((level) => (
             <button
               key={level}
               onClick={() => setFilter(level)}
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                 filter === level
-                  ? "bg-sattvaBrown text-sattvaCream shadow-md"
-                  : "text-sattvaBrown hover:bg-sattvaCream/50"
+                  ? "bg-sattvaBrown text-white shadow-md font-semibold"
+                  : "bg-sattvaCream text-sattvaDark hover:bg-sattvaBeige/70 font-medium"
               }`}
             >
               {level}
